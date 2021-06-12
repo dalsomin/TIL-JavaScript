@@ -1,3 +1,5 @@
+### every()
+
 ```javascript
 const isBelowThreshold = (currentValue) => currentValue ;
 
