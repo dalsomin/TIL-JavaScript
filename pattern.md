@@ -166,3 +166,25 @@ const numbers = ["zero", "one", "two", "three", "four", "five"];
 numbers.length = 4; // ['zero', 'one', 'two', 'three'];
 ```
 
+
+반복문에서 continue를 사용하지 않는다
+더글라스 크락포드는 "리팩토링을 통해 continue를 제거했을 때 성능이 향상되지 않은 경우를 본 적이 없다"고 말했을 정도로 continue사용 유무는 성능에 큰 영향을 미친다. 반복문 안에서 continue를 사용하면 자바스크립트 엔진에서 별도의 실행 컨텍스트를 만들어 관리한다. 이러한 반복문은 전체 성능에 영향을 주므로 사용하지 않는다. continue를 잘 사용하면 코드를 간결하게 작성할 수 있지만, 과용하면 디버깅 시 개발자의 의도를 파악하기 어렵고 유지 보수가 힘들다.
+
+▶ 해결책
+반복문 내부에서 특정 코드의 실행을 건너뛸 때는 조건문을 사용한다.
+// Bad
+let loopCount = 0;
+
+for (let i = 1; i < 10; i += 1) {
+  if (i > 5) {
+    continue;
+  }
+  loopCount += 1;
+}
+
+// Good
+for (let i = 1; i < 10; i += 1) {
+  if (i <= 5) {
+    loopCount += 1;
+  }
+}
